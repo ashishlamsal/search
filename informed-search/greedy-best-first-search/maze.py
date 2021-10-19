@@ -122,22 +122,13 @@ class Maze():
                 if not frontier.contains_state(state) and state not in self.explored:
                     child = Node(state=state, parent=node, action=action)
 
-                    # Calculate the f, g and h values
-                    child.g = node.g + 1
-
                     # Heuristics using Manhattan distance
                     child.h = abs(child.state[0] - self.goal[0]) + abs(child.state[1] - self.goal[1])
-
-                    # Heuristics using eucledian distance
-                    # child.h = (abs(child.state[0] - self.goal[0]) **
-                    #            2) + (abs(child.state[1] - self.goal[1]) ** 2)
-
-                    child.f = child.g + child.h
 
                     frontier.add(child)
 
     def output_image(self, filename, show_solution=True, show_explored=False):
-        from PIL import Image, ImageDraw, ImageFont
+        from PIL import Image, ImageDraw
         cell_size = 50
         cell_border = 2
 
